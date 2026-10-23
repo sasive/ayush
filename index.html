@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFC Style | Taste The Crunch</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --red: #E4002B;
+            --dark: #202124;
+            --light: #FFF8F0;
+            --grey: #F5F5F5;
+            --text: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: \'Poppins\', sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        /* Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--red);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--dark)
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: var(--red)
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .btn-primary:hover {
+            background: #c20025;
+            transform: translateY(-2px);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            cursor: pointer;
+            background: var(--grey);
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--red);
+            color: #fff;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--light);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            padding: 40px 5%;
+            min-height: 85vh;
+            gap: 30px;
+        }
+
+        .hero-text h4 {
+            color: var(--red);
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            line-height: 1.1;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .hero-text h1 span {
+            color: var(--red)
+        }
+
+        .hero-text p {
+            margin: 20px 0 30px;
+            color: #666;
+            font-size: 17px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--dark);
+            padding: 10px 26px;
+            border-radius: 30px;
+            font-weight: 600;
+            background: transparent;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--dark);
+            color: #fff;
+        }
+
+        .hero-img {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-img img {
+            width: 100%;
+            max-width: 520px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(228, 0, 43, 0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        .price-tag {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .price-tag h3 {
+            color: var(--red)
+        }
+
+        /* Categories */
+        .section {
+            padding: 70px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .section-title p {
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .cat-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            border-color: var(--red);
+        }
+
+        .cat-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .cat-card h3 {
+            font-size: 17px;
+        }
+
+        /* Menu */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .food-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+            transition: .3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 20px;
+        }
+
+        .food-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .food-info p {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 12px;
+            height: 38px;
+            overflow: hidden;
+        }
+
+        .food-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--red);
+        }
+
+        .add-btn {
+            background: var(--dark);
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .add-btn:hover {
+            background: var(--red)
+        }
+
+        /* Offer Banner */
+        .offer-banner {
+            margin: 0 5%;
+            background: var(--red);
+            border-radius: 25px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            padding: 40px;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .offer-banner h2 {
+            font-size: 38px;
+            line-height: 1.2;
+        }
+
+        .offer-banner p {
+            margin: 15px 0 20px;
+            opacity: 0.9
+        }
+
+        .offer-banner img {
+            width: 100%;
+            border-radius: 20px;
+            transform: rotate(2deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 50px 5% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 30px;
+        }
+
+        .footer-grid h4 {
+            margin-bottom: 15px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: #bbb;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .social i {
+            background: #333;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .social i:hover {
+            background: var(--red)
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+            padding-top: 20px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: #fff;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            padding: 25px;
+            transition: .4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block
+        }
+
+        /* Responsive */
+        @media(max-width:992px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text p {
+                margin: 20px auto 30px
+            }
+
+            .hero-btns {
+                justify-content: center
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .offer-banner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(max-width:600px) {
+            .nav-links {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .hero-text h1 {
+                font-size: 36px
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr
+            }
+
+            .categories {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">KFC<span>STYLE</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#offers">Offers</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+            <button class="btn-primary">Order Now</button>
+            <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h4>CRISPY & JUICY</h4>
+            <h1>FINGER LICKIN\' <span>GOOD</span> CHICKEN</h1>
+            <p>Experience the legendary taste of our world-famous fried chicken, burgers and buckets. Freshly cooked &
+                delivered hot in 30 mins.</p>
+            <div class="hero-btns">
+                <button class="btn-primary"
+                    onclick="document.getElementById(\'menu\').scrollIntoView({behavior:\'smooth\'})">Explore Menu <i
+                        class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn-outline">Watch Story</button>
+            </div>
+            <div style="margin-top:25px;display:flex;gap:15px;align-items:center;justify-content:left;">
+                <div style="display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-star"
+                        style="color:#FFB703"></i> 4.8/5 (12k+ Reviews)</div>
+                <div style="display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-truck-fast"
+                        style="color:var(--red)"></i> Free Delivery</div>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=600" alt="Fried Chicken Bucket">
+            <div class="price-tag">
+                <p style="font-size:12px;color:#888">STARTING FROM</p>
+                <h3>₹199 Only</h3>
+                <p style="font-size:12px;color:#888">*Limited Time Offer</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Browse Categories</h2>
+            <p>Find your favorite craving</p>
+        </div>
+        <div class="categories">
+            <div class="cat-card"><img src="https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=200">
+                <h3>Chicken Bucket</h3>
+                <p style="font-size:13px;color:#888">12 Items</p>
+            </div>
+            <div class="cat-card"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=200">
+                <h3>Burgers</h3>
+                <p style="font-size:13px;color:#888">08 Items</p>
+            </div>
+            <div class="cat-card"><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200">
+                <h3>Rice Bowlz</h3>
+                <p style="font-size:13px;color:#888">06 Items</p>
+            </div>
+            <div class="cat-card"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=200">
+                <h3>Snacks</h3>
+                <p style="font-size:13px;color:#888">10 Items</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="menu" style="background:var(--grey)">
+        <div class="section-title">
+            <h2>Best Sellers</h2>
+            <p>Most loved by our customers</p>
+        </div>
+        <div class="menu-grid">
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1626645738196-c2a046db67c8?w=500">
+                <div class="food-info">
+                    <h3>Classic Chicken Bucket - 8 Pcs</h3>
+                    <p>Crispy, juicy fried chicken with our secret 11 herbs & spices.</p>
+                    <div class="food-meta"><span class="price">₹649</span><button class="add-btn"
+                            onclick="addToCart(\'Chicken Bucket 8 Pcs\',649)">Add +</button></div>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500">
+                <div class="food-info">
+                    <h3>Zinger Burger + Fries Combo</h3>
+                    <p>Signature zinger fillet with fries and pepsi. Full meal.</p>
+                    <div class="food-meta"><span class="price">₹299</span><button class="add-btn"
+                            onclick="addToCart(\'Zinger Combo\',299)">Add +</button></div>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500">
+                <div class="food-info">
+                    <h3>Veg Twister Wrap</h3>
+                    <p>Fresh veggies, paneer patty wrapped in tortilla. A healthy bite.</p>
+                    <div class="food-meta"><span class="price">₹149</span><button class="add-btn"
+                            onclick="addToCart(\'Veg Twister\',149)">Add +</button></div>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1521390188846-e2a3a97453a0?w=500">
+                <div class="food-info">
+                    <h3>Smoky Grilled Chicken</h3>
+                    <p>Flame grilled chicken with smoky BBQ dip - 4 pcs.</p>
+                    <div class="food-meta"><span class="price">₹499</span><button class="add-btn"
+                            onclick="addToCart(\'Smoky Grilled\',499)">Add +</button></div>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=500">
+                <div class="food-info">
+                    <h3>Chicken Popcorn - Large</h3>
+                    <p>Bite-sized crispy chicken popcorn, perfect for sharing.</p>
+                    <div class="food-meta"><span class="price">₹229</span><button class="add-btn"
+                            onclick="addToCart(\'Chicken Popcorn\',229)">Add +</button></div>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=500">
+                <div class="food-info">
+                    <h3>Paneer Rice Bowlz</h3>
+                    <p>Rice with spicy paneer gravy, veggies and chicken popcorn.</p>
+                    <div class="food-meta"><span class="price">₹279</span><button class="add-btn"
+                            onclick="addToCart(\'Rice Bowlz\',279)">Add +</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="offers">
+        <div class="offer-banner">
+            <div>
+                <h4 style="letter-spacing:2px;opacity:0.9">LIMITED OFFER</h4>
+                <h2>Get 50% OFF on <br> Your First Order</h2>
+                <p>Use coupon code: <b
+                        style="background:#fff;color:var(--red);padding:4px 10px;border-radius:5px;">CRUNCH50</b> at
+                    checkout</p>
+                <button class="btn-outline" style="background:#fff;color:var(--red);border:none;">Order Now</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=500" alt="offer">
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h2 style="color:var(--red)">KFCSTYLE</h2>
+                <p>We serve the best finger lickin\' chicken in town. Order online for fast delivery and great offers.
+                    Taste the crunch today!</p>
+                <div class="social" style="margin-top:15px;display:flex;">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="#">Home</a><br><a href="#">Menu</a><br><a href="#">Offers</a><br><a href="#">Stores</a>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <a href="#">Help Center</a><br><a href="#">Track Order</a><br><a href="#">Privacy Policy</a><br><a
+                    href="#">Terms</a>
+            </div>
+            <div>
+                <h4>Download App</h4>
+                <p>Get 20% extra discount on app orders.</p>
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                    style="width:130px;margin-top:10px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                    style="width:130px;margin-top:10px;">
+            </div>
+        </div>
+        <div class="copyright">© 2025 KFCStyle. All Rights Reserved. Made with ❤️ for Food Lovers.</div>
+    </footer>
+
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart (<span id="cartCount2">0</span>)</h3>
+            <i class="fa-solid fa-xmark" style="cursor:pointer;font-size:20px;" onclick="toggleCart()"></i>
+        </div>
+        <div id="cartItems" style="flex:1;overflow-y:auto;">
+            <p style="text-align:center;color:#888;margin-top:50px;">Your cart is empty <br> Add some delicious food!
+            </p>
+        </div>
+        <div style="border-top:1px solid #eee;padding-top:15px;">
+            <div style="display:flex;justify-content:space-between;font-weight:700;font-size:18px;margin-bottom:15px;">
+                <span>Total:</span><span id="cartTotal">₹0</span>
+            </div>
+            <button class="btn-primary" style="width:100%;padding:14px;">Checkout <i
+                    class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            total += price;
+            updateCart();
+            toggleCart(true);
+        }
+        function updateCart() {
+            document.getElementById(\'cartCount\').innerText = cart.length;
+            document.getElementById(\'cartCount2\').innerText = cart.length;
+            document.getElementById(\'cartTotal\').innerText = \'₹\' + total;
+            const container = document.getElementById(\'cartItems\');
+            if (cart.length === 0) {
+                container.innerHTML = \'<p style="text-align:center;color:#888;margin-top:50px;">Your cart is empty <br> Add some delicious food!</p>\';
+            } else {
+                container.innerHTML = cart.map((item, i) => `
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f0f0;">
+                        <div><h4 style="font-size:15px;">${item.name}</h4><p style="font-size:13px;color:#888;">₹${item.price}</p></div>
+                        <i class="fa-solid fa-trash" style="color:var(--red);cursor:pointer;" onclick="removeItem(${i})"></i>
+                    </div>
+                `).join(\'\');
+            }
+        }
+        function removeItem(i) {
+            total -= cart[i].price;
+            cart.splice(i, 1);
+            updateCart();
+        }
+        function toggleCart(forceOpen) {
+            const sidebar = document.getElementById(\'cartSidebar\');
+            const overlay = document.getElementById(\'overlay\');
+            if (forceOpen === true) {
+                sidebar.classList.add(\'active\'); overlay.classList.add(\'active\');
+            } else {
+                sidebar.classList.toggle(\'active\'); overlay.classList.toggle(\'active\');
+            }
+        }
+        // Mobile menu toggle
+        document.querySelector(\'.hamburger\').addEventListener(\'click\', ()=>{
+            const links = document.querySelector(\'.nav-links\');
+            links.style.display = links.style.display === \'flex\' ? \'none\' : \'flex\';
+            links.style.position = \'absolute\'; links.style.top = \'70px\'; links.style.left = \'0\';
+            links.style.width = \'100%\'; links.style.background = \'#fff\'; links.style.flexDirection = \'column\';
+            links.style.padding = \'20px\'; links.style.boxShadow = \'0 10px 20px rgba(0,0,0,0.1)\';
+        })
+    </script>
+</body>
+
+</html>
